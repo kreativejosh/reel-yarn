@@ -47,22 +47,19 @@ export function Footer() {
       <nav className="fgrid fnav" aria-label="Footer">
         {["0", "33.333%", "66.666%", "100%"].map((l) => tick(l, "100%"))}
         <div>
-          <h2 className="fh">Make</h2>
-          <ul>{footerNav.make.map((m) => <li key={m}><a href="#formats">{m}</a></li>)}</ul>
-        </div>
-        <div>
-          <h2 className="fh">Product</h2>
-          <ul><li><a href="#edit">How it works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">Questions</a></li><li><a href={site.links.signIn}>Sign in</a></li></ul>
+          <h2 className="fh">Community</h2>
+          <ul>{footerNav.community.map((m) => <li key={m.label}><a href={m.href}>{m.label}</a></li>)}</ul>
         </div>
         <div>
           <h2 className="fh">Company</h2>
+          <ul><li><a href="#edit">How it works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">Questions</a></li></ul>
+        </div>
+        <div>
+          <h2 className="fh">Legal</h2>
           <ul>
             <li><a href={`mailto:${site.email}`}>Contact us</a></li>
             <li><a href={site.links.terms}>Terms of Service</a></li>
             <li><a href={site.links.privacy}>Privacy Policy</a></li>
-            <li><a href={site.links.refund}>Refund Policy</a></li>
-            <li><a href={site.links.acceptableUse}>Acceptable Use</a></li>
-            <li><a href={site.links.copyright}>Copyright</a></li>
           </ul>
         </div>
       </nav>

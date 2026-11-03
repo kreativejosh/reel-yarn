@@ -181,5 +181,9 @@ export const faqs = [
 ];
 
 export const footerNav = {
-  make: ["Promo videos", "Explainers and quizzes", "Stick-figure videos", "Videos from photos", "Caption my video", "Clips from long videos", "Translate my video"],
+  community: [
+    { label: "Learn", href: site.links.academy },
+    { label: "Join the community", href: site.links.community },
+    { label: "Expert services", href: site.links.services },
+  ],
 };
