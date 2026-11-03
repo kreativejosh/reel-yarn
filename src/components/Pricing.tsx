@@ -12,13 +12,11 @@ const icons: Record<(typeof creditCosts)[number]["icon"], React.ReactNode> = {
 };
 
 const fmt = (n: number) => n.toLocaleString("en-US");
-const base = packs[0][1] / packs[0][0];
 
-// One pack picker drives the price, the savings badge and what the credits make.
+// One pack picker drives the price and what the credits make.
 export function Pricing() {
   const [i, setI] = useState(DEFAULT_PACK);
   const [credits, usd] = packs[i];
-  const save = Math.round((1 - usd / credits / base) * 100);
 
   return (
     <section className="band price-sec" id="pricing" aria-labelledby="pr-h">
@@ -37,7 +35,6 @@ export function Pricing() {
               <span className="big">${fmt(usd)}</span>
               <span className="meta"><span className="cr">{fmt(credits)} credits</span><span className="ngn">about ₦{fmt(usd * NGN_PER_USD)} · one-time</span></span>
             </div>
-            <span className="pr-save" hidden={save <= 0}>{save}% cheaper per credit than the smallest pack</span>
             <div className="pr-range">
               <label htmlFor="prRange" className="pr-label">Slide to pick a pack</label>
               <input

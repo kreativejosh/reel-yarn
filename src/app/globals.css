@@ -307,8 +307,6 @@ nav.top{display:flex;align-items:center;justify-content:space-between;gap:16px;p
 .pr-amount .meta{padding-bottom:8px;display:flex;flex-direction:column;gap:4px}
 .pr-amount .cr{font:600 1.15rem var(--display);letter-spacing:-.02em}
 .pr-amount .ngn{color:var(--muted);font-size:.92rem}
-.pr-save{display:inline-block;margin-top:14px;background:var(--orange-soft);border:1px solid #ffd9c4;color:var(--ember);border-radius:8px;padding:5px 10px;font-size:.86rem;font-weight:500}
-.pr-save[hidden]{display:none}
 .pr-range{margin-top:36px}
 .pr-range input{width:100%;-webkit-appearance:none;appearance:none;height:28px;background:transparent;cursor:pointer;margin:0}
 .pr-range input::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--orange) var(--p,0%),#efecea var(--p,0%))}
