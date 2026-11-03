@@ -13,7 +13,7 @@ const icons: Record<(typeof creditCosts)[number]["icon"], React.ReactNode> = {
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
-// One pack picker drives the price and what the credits make.
+// One pack picker drives the price.
 export function Pricing() {
   const [i, setI] = useState(DEFAULT_PACK);
   const [credits, usd] = packs[i];
@@ -57,7 +57,6 @@ export function Pricing() {
                 <li key={c.what}>
                   <span className="ic"><svg viewBox="0 0 24 24" aria-hidden="true">{icons[c.icon]}</svg></span>
                   <span className="what">{c.what}<small>{c.credits} credits each</small></span>
-                  <span className="n">{fmt(Math.floor(credits / c.credits))}</span>
                 </li>
               ))}
             </ul>
