@@ -63,7 +63,7 @@ export const nav = [
 
 export const hero = {
   lines: ["Start creating content", "with just one line"],
-  sub: "For businesses growing with video, creators building a niche, and teachers turning what they know into courses. ReelYarn writes, designs, voices and captions every video, ready to post.",
+  sub: "For businesses growing with video and creators building a niche. ReelYarn writes, designs, voices and captions every video, ready to post.",
   fine: "20 free credits. No card. No editing skills.",
 };
 
