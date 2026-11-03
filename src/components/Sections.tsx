@@ -73,7 +73,7 @@ export function StartWays() {
             <h3>{web.title}</h3>
             <p>{web.body}</p>
             <div className="visual v-web" aria-hidden="true">
-              <span className="rec"><i></i>Reading yourshop.com · 4 pages</span>
+              <span className="rec"><i></i>Reading yourshop.com · <b className="n">4</b> pages</span>
               <div className="browser"><div className="bar"><i></i><i></i><i></i><span>yourshop.com/new-arrivals</span></div>
                 <div className="pg"><div><span></span><b></b><b></b></div><div><span></span><b></b><b></b></div><div><span></span><b></b><b></b></div><span className="scan"></span></div></div>
             </div>
@@ -118,7 +118,7 @@ export function Faq() {
         <h2 id="faq-h">Frequently<br />asked questions</h2>
         <div>
           {faqs.map(({ q, a }) => (
-            <details key={q}>
+            <details key={q} name="faq">
               <summary><span className="plus" aria-hidden="true"></span><h3 style={{ all: "unset" }}>{q}</h3></summary>
               <p className="ans">{a}</p>
             </details>

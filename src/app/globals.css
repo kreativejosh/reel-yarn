@@ -442,3 +442,35 @@ html.lenis,html.lenis body{height:auto}
 @keyframes caret{50%{opacity:0}}
 .steps-a div{transition:color .3s}
 .steps-a i{transition:background-color .25s,border-color .25s,box-shadow .25s}
+
+/* Edit tabs: one orange bar slides between tabs. */
+.feats{position:relative}
+.feat-ind{position:absolute;left:0;top:0;width:2px;height:0;background:var(--orange);z-index:1;pointer-events:none}
+.feats:has(.feat-ind) .feat[aria-selected="true"]{border-left-color:#f0eeec}
+.feat{transition:color .3s}
+.feat:hover{color:var(--ink)}
+
+/* Gallery: the pointer becomes a Play chip on desktop. */
+.cur{position:fixed;left:0;top:0;z-index:50;pointer-events:none;visibility:hidden;opacity:0;scale:.4}
+.cur span{display:grid;place-items:center;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;background:var(--orange);color:#fff;font:500 .95rem var(--body);box-shadow:0 14px 34px -10px rgba(255,90,31,.7)}
+.vgrid.has-cur .vm{cursor:none}
+.vgrid.has-cur .vc-play{opacity:0}
+.vgrid.has-cur .vc-play:focus-visible{opacity:1}
+
+/* Pricing: the thumb grows while held, the chosen tick lifts. */
+.pr-range input::-webkit-slider-thumb{transition:transform .2s var(--ease-out)}
+.pr-range input:active::-webkit-slider-thumb{transform:scale(1.18)}
+.pr-ticks span{transition:color .25s,transform .35s var(--ease-out)}
+.pr-ticks span.on{transform:translateY(-2px) scale(1.12)}
+
+/* FAQ: answers open and close smoothly where the browser supports it. */
+@media (prefers-reduced-motion:no-preference){
+  @supports (interpolate-size:allow-keywords){
+    :root{interpolate-size:allow-keywords}
+    details::details-content{block-size:0;overflow:clip;transition:block-size .5s var(--ease-out),content-visibility .5s allow-discrete}
+    details[open]::details-content{block-size:auto}
+  }
+  summary .plus::after{transition:transform .35s var(--ease-out)}
+  summary{transition:color .2s}
+  summary:hover{color:var(--ink-2)}
+}

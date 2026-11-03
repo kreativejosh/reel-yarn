@@ -5,6 +5,7 @@ import { Formats, StartWays, Support, Faq } from "@/components/Sections";
 import { EditFeatures } from "@/components/EditFeatures";
 import { Pricing } from "@/components/Pricing";
 import { Footer } from "@/components/Footer";
+import { SiteMotion } from "@/components/SiteMotion";
 import { JsonLd, faqLd, softwareLd, videosLd, webPageLd } from "@/components/JsonLd";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
         <Faq />
       </main>
       <Footer />
+      <SiteMotion />
     </>
   );
 }

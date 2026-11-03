@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 import { Roll } from "./Roll";
 import { creditCosts, DEFAULT_PACK, NGN_PER_USD, packs, pricing, site } from "@/content/site";
 
@@ -14,10 +15,23 @@ const icons: Record<(typeof creditCosts)[number]["icon"], React.ReactNode> = {
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
+// Counts from the old value to the new one, so prices roll instead of jumping.
+function useRolling(target: number) {
+  const [shown, setShown] = useState(target);
+  const box = useRef({ v: target });
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { box.current.v = target; setShown(target); return; }
+    const t = gsap.to(box.current, { v: target, duration: 0.6, ease: "expo.out", onUpdate: () => setShown(Math.round(box.current.v)) });
+    return () => { t.kill(); };
+  }, [target]);
+  return shown;
+}
+
 // One pack picker drives the price.
 export function Pricing() {
   const [i, setI] = useState(DEFAULT_PACK);
   const [credits, usd] = packs[i];
+  const shownCredits = useRolling(credits), shownUsd = useRolling(usd);
 
   return (
     <section className="band price-sec" id="pricing" aria-labelledby="pr-h">
@@ -33,8 +47,8 @@ export function Pricing() {
         <div className="pr-card">
           <div className="pr-pick">
             <div className="pr-amount" aria-live="polite">
-              <span className="big">${fmt(usd)}</span>
-              <span className="meta"><span className="cr">{fmt(credits)} credits</span><span className="ngn">about ₦{fmt(usd * NGN_PER_USD)} · one-time</span></span>
+              <span className="big">${fmt(shownUsd)}</span>
+              <span className="meta"><span className="cr">{fmt(shownCredits)} credits</span><span className="ngn">about ₦{fmt(shownUsd * NGN_PER_USD)} · one-time</span></span>
             </div>
             <div className="pr-range">
               <label htmlFor="prRange" className="pr-label">Slide to pick a pack</label>
@@ -48,7 +62,7 @@ export function Pricing() {
                 {packs.map(([c], k) => <span key={c} className={k === i ? "on" : undefined}>{c >= 1000 ? `${c / 1000}k` : c}</span>)}
               </div>
             </div>
-            <a href={site.links.signUp} className="btn btn-orange pr-buy"><b><Roll>{`Get ${fmt(credits)} credits`}</Roll></b><span className="arw" aria-hidden="true">&rarr;</span></a>
+            <a href={site.links.signUp} className="btn btn-orange pr-buy"><b><Roll>{`Get ${fmt(shownCredits)} credits`}</Roll></b><span className="arw" aria-hidden="true">&rarr;</span></a>
             <a href={site.links.signUp} className="pr-custom">Need a different amount? Pay any sum from $5 at the bigger-pack rate.</a>
           </div>
 
