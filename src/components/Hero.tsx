@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { hero, nav, site } from "@/content/site";
 import { HeroStage } from "./HeroStage";
+import { LiquidGlass } from "./LiquidGlass";
 import { Roll } from "./Roll";
 
 export function Nav() {
@@ -40,7 +40,13 @@ function dissolveSquares() {
 export function Hero() {
   return (
     <HeroStage>
-      <Image className="ribbon" src="/media/glass-ribbon.webp" alt="" aria-hidden="true" width={970} height={1946} priority sizes="(max-width: 860px) 46vw, 430px" />
+      {/* Two glass pieces frame the hero: one tall on the right, one sweeping in from the left toward the app. */}
+      <div className="ribbon r-right" aria-hidden="true">
+        <LiquidGlass src="/media/glass-ribbon.webp" width={970} height={1946} sizes="(max-width: 860px) 62vw, 580px" priority />
+      </div>
+      <div className="ribbon r-left" aria-hidden="true">
+        <LiquidGlass src="/media/glass-sweep.webp" width={1300} height={970} sizes="(max-width: 860px) 96vw, 720px" seed={3.7} />
+      </div>
       <div className="wrap">
         <h1 id="hero-h"><span className="ln">{hero.lines[0]}</span> <span className="ln dim">{hero.lines[1]}</span></h1>
         <p className="sub">{hero.sub}</p>

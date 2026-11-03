@@ -34,7 +34,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
         tl.set(q("h1, .sub, .ctas > *, .fine, .app, .ribbon"), { visibility: "visible" })
           .from(head.lines, { yPercent: 110, duration: 1, stagger: 0.09 }, 0)
           .from(q("h1 .dim"), { color: "#0e0e13", duration: 1.1, ease: "power2.out" }, 0.45)
-          .from(q(".ribbon"), { autoAlpha: 0, x: 60, duration: 1.6 }, 0.1)
+          .from(q(".ribbon"), { autoAlpha: 0, x: (_i: number, el: HTMLElement) => (el.classList.contains("r-left") ? -80 : 80), duration: 1.8, stagger: 0.15 }, 0.1)
           .from(q(".sub"), { autoAlpha: 0, y: 14, duration: 0.8 }, 0.35)
           .from(q(".ctas > *"), { autoAlpha: 0, y: 14, duration: 0.8, stagger: 0.07 }, 0.45)
           .from(q(".fine"), { autoAlpha: 0, duration: 0.8 }, 0.6)
@@ -80,7 +80,8 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
         scrollTrigger: { trigger: app, start: "top 95%", end: "top 30%", scrub: 0.6 },
       });
       gsap.to(q(".ribbon"), {
-        yPercent: -14, rotate: 6, ease: "none",
+        yPercent: (_i: number, el: HTMLElement) => (el.classList.contains("r-left") ? -22 : -14),
+        rotate: (_i: number, el: HTMLElement) => (el.classList.contains("r-left") ? -5 : 6), ease: "none",
         scrollTrigger: { trigger: ref.current, start: "top top", end: "bottom top", scrub: true },
       });
 
