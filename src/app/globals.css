@@ -140,9 +140,9 @@ nav.top{display:flex;align-items:center;justify-content:space-between;gap:16px;p
 .vc.wide:hover .vm .blur{transform:scale(1.2)}
 @media (max-width:980px){.vc.wide .vm{aspect-ratio:16/10;flex:none}}
 .vc-tag{position:absolute;left:14px;top:14px;z-index:2;background:rgba(20,20,26,.66);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;border-radius:999px;padding:6px 12px;font:500 .72rem var(--body);letter-spacing:.06em;text-transform:uppercase}
-.vc-play{position:absolute;left:50%;top:50%;z-index:2;width:64px;height:64px;transform:translate(-50%,-50%);border-radius:50%;border:0;background:#fff;box-shadow:0 10px 30px -8px rgba(0,0,0,.45);cursor:pointer;display:grid;place-items:center;transition:transform .2s ease}
-.vc-play::before{content:"";margin-left:5px;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent var(--ink)}
-.vc:hover .vc-play{transform:translate(-50%,-50%) scale(1.08)}
+.vc-play{position:absolute;left:50%;top:50%;z-index:2;width:64px;height:64px;transform:translate(-50%,-50%);border-radius:50%;border:0;background:rgba(255,255,255,.58);-webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);cursor:pointer;display:grid;place-items:center;transition:transform .2s ease}
+.vc-play::before{content:"";margin-left:5px;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent rgba(14,14,19,.78)}
+.vc:hover .vc-play{transform:translate(-50%,-50%) scale(1.08);background:rgba(255,255,255,.72)}
 .vc-play:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 .prompt{margin:0;color:var(--ink-2);font-size:.92rem;line-height:1.45;min-height:4.35em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .prompt b{color:var(--ink);font-weight:600}
@@ -308,14 +308,22 @@ nav.top{display:flex;align-items:center;justify-content:space-between;gap:16px;p
 .pr-amount .cr{font:600 1.15rem var(--display);letter-spacing:-.02em}
 .pr-amount .ngn{color:var(--muted);font-size:.92rem}
 .pr-range{margin-top:36px}
-.pr-range input{width:100%;-webkit-appearance:none;appearance:none;height:28px;background:transparent;cursor:pointer;margin:0}
-.pr-range input::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--orange) var(--p,0%),#efecea var(--p,0%))}
-.pr-range input::-moz-range-track{height:8px;border-radius:99px;background:#efecea}
-.pr-range input::-moz-range-progress{height:8px;border-radius:99px;background:var(--orange)}
-.pr-range input::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;border-radius:50%;background:#fff;border:2px solid var(--orange);box-shadow:0 4px 14px -4px rgba(255,90,31,.6)}
-.pr-range input::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--orange);box-shadow:0 4px 14px -4px rgba(255,90,31,.6)}
-.pr-range input:focus-visible{outline:3px solid var(--orange);outline-offset:6px;border-radius:99px}
-.pr-ticks{display:flex;justify-content:space-between;margin-top:10px;font:500 .78rem var(--mono);color:var(--muted)}
+.pr-slider{position:relative;margin-top:12px;height:58px}
+.pr-rail{position:absolute;left:0;right:0;top:23px;height:12px;padding:2px;border-radius:99px;background:linear-gradient(180deg,#e2ddd7,#efebe7);box-shadow:inset 0 1px 3px rgba(60,30,10,.24),0 1px 0 #fff;transition:box-shadow .2s}
+.pr-fill{display:block;height:100%;width:calc(16px + (100% - 32px) * var(--pn,0));border-radius:99px;background:linear-gradient(90deg,var(--orange-2),var(--orange));box-shadow:0 0 12px rgba(255,90,31,.55),inset 0 1px 0 rgba(255,255,255,.35)}
+.pr-scale{position:absolute;left:0;right:0;height:7px;padding:0 17px 0 18px;background:linear-gradient(90deg,#b7afa7 1px,transparent 1px) 0 0/calc((100% - 1px) / 6) 100% repeat-x,linear-gradient(90deg,#d8d2cb 1px,transparent 1px) 0 100%/calc((100% - 1px) / 24) 4px repeat-x;background-origin:content-box;background-clip:content-box;pointer-events:none}
+.pr-scale.top{top:11px}
+.pr-scale.bot{top:40px;background-position:0 0,0 0}
+.pr-slider input{position:absolute;inset:0;width:100%;height:100%;margin:0;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer}
+.pr-slider input:focus-visible{outline:none}
+.pr-slider:has(input:focus-visible) .pr-rail{box-shadow:inset 0 1px 3px rgba(60,30,10,.24),0 0 0 4px rgba(255,90,31,.22)}
+.pr-slider input::-webkit-slider-runnable-track{height:100%;background:transparent}
+.pr-slider input::-moz-range-track{background:transparent}
+.pr-slider input::-moz-range-progress{background:transparent}
+.pr-slider input::-webkit-slider-thumb{-webkit-appearance:none;width:36px;height:26px;margin-top:16px;border-radius:9px;border:1px solid #e0dad3;background:linear-gradient(var(--orange),var(--orange)) center/2px 12px no-repeat,radial-gradient(closest-side,rgba(255,90,31,.3),transparent) center/24px 24px no-repeat,linear-gradient(180deg,#fff,#efebe6);box-shadow:0 8px 16px -6px rgba(90,31,8,.45),0 2px 4px rgba(90,31,8,.12),inset 0 1px 0 #fff;transition:transform .2s cubic-bezier(.16,1,.3,1)}
+.pr-slider input::-moz-range-thumb{width:34px;height:24px;border-radius:9px;border:1px solid #e0dad3;background:linear-gradient(var(--orange),var(--orange)) center/2px 12px no-repeat,radial-gradient(closest-side,rgba(255,90,31,.3),transparent) center/24px 24px no-repeat,linear-gradient(180deg,#fff,#efebe6);box-shadow:0 8px 16px -6px rgba(90,31,8,.45),0 2px 4px rgba(90,31,8,.12),inset 0 1px 0 #fff}
+.pr-slider input:active::-webkit-slider-thumb{transform:scale(1.06)}
+.pr-ticks{display:flex;justify-content:space-between;margin-top:6px;padding-inline:18px;font:500 .78rem var(--mono);color:var(--muted)}
 .pr-ticks span{width:0;display:flex;justify-content:center;white-space:nowrap}
 .pr-ticks span.on{color:var(--ink)}
 .pr-buy{margin-top:36px;width:100%;justify-content:space-between}
@@ -458,8 +466,6 @@ html.lenis,html.lenis body{height:auto}
 .vgrid.has-cur .vc-play:focus-visible{opacity:1}
 
 /* Pricing: the thumb grows while held, the chosen tick lifts. */
-.pr-range input::-webkit-slider-thumb{transition:transform .2s var(--ease-out)}
-.pr-range input:active::-webkit-slider-thumb{transform:scale(1.18)}
 .pr-ticks span{transition:color .25s,transform .35s var(--ease-out)}
 .pr-ticks span.on{transform:translateY(-2px) scale(1.12)}
 

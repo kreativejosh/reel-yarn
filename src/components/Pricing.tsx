@@ -52,12 +52,16 @@ export function Pricing() {
             </div>
             <div className="pr-range">
               <label htmlFor="prRange" className="pr-label">Slide to pick a pack</label>
-              <input
-                type="range" id="prRange" min={0} max={packs.length - 1} step={1} value={i}
-                onChange={(e) => setI(+e.target.value)}
-                aria-valuetext={`${fmt(credits)} credits for $${usd}`}
-                style={{ "--p": `${(i / (packs.length - 1)) * 100}%` } as React.CSSProperties}
-              />
+              <div className="pr-slider" style={{ "--pn": i / (packs.length - 1) } as React.CSSProperties}>
+                <div className="pr-scale top" aria-hidden="true"></div>
+                <div className="pr-rail" aria-hidden="true"><span className="pr-fill"></span></div>
+                <input
+                  type="range" id="prRange" min={0} max={packs.length - 1} step={1} value={i}
+                  onChange={(e) => setI(+e.target.value)}
+                  aria-valuetext={`${fmt(credits)} credits for $${usd}`}
+                />
+                <div className="pr-scale bot" aria-hidden="true"></div>
+              </div>
               <div className="pr-ticks" aria-hidden="true">
                 {packs.map(([c], k) => <span key={c} className={k === i ? "on" : undefined}>{c >= 1000 ? `${c / 1000}k` : c}</span>)}
               </div>
