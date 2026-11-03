@@ -19,8 +19,6 @@ export function Pricing() {
   const [i, setI] = useState(DEFAULT_PACK);
   const [credits, usd] = packs[i];
   const save = Math.round((1 - usd / credits / base) * 100);
-  const promos = Math.floor((credits * 0.45) / 11);
-  const caps = Math.floor((credits - promos * 11) / 3);
 
   return (
     <section className="band price-sec" id="pricing" aria-labelledby="pr-h">
@@ -66,7 +64,6 @@ export function Pricing() {
                 </li>
               ))}
             </ul>
-            <p className="pr-mix">For example: {fmt(promos)} promo{promos === 1 ? "" : "s"} and {fmt(caps)} captioned video{caps === 1 ? "" : "s"}.</p>
           </div>
         </div>
 
