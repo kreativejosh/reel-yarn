@@ -53,12 +53,10 @@ export const site = {
 } as const;
 
 export const nav = [
-  { href: "#who", label: "Who it's for" },
-  { href: "#gallery", label: "Examples" },
-  { href: "#formats", label: "What you can make" },
   { href: "#edit", label: "Features" },
   { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
+  { href: "#learn", label: "Learn" },
 ];
 
 export const hero = {

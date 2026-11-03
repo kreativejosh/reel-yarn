@@ -86,7 +86,7 @@ export function StartWays() {
 
 export function Support() {
   return (
-    <section className="band" style={{ paddingBlock: "40px 70px" }} aria-labelledby="grow-h">
+    <section className="band" id="learn" style={{ paddingBlock: "40px 70px" }} aria-labelledby="grow-h">
       <div className="wrap grow">
         <h2 id="grow-h">Get the skills, insights, and support to grow with content</h2>
         <div className="grow-cards">

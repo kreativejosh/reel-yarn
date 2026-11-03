@@ -39,7 +39,7 @@ export function MotionProvider() {
       end: "max",
       onUpdate(self) {
         const y = self.scroll();
-        header.classList.toggle("nav-solid", y > 40);
+        header.classList.toggle("nav-solid", y > 80);
         header.classList.toggle("nav-hidden", self.direction === 1 && y > 240 && !header.contains(document.activeElement));
       },
     });

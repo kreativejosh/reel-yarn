@@ -42,10 +42,10 @@ export function Hero() {
     <HeroStage>
       {/* Two glass pieces frame the hero: one tall on the right, one sweeping in from the left toward the app. */}
       <div className="ribbon r-right" aria-hidden="true">
-        <LiquidGlass src="/media/glass-ribbon.webp" width={970} height={1946} sizes="(max-width: 860px) 62vw, 580px" priority />
+        <LiquidGlass src="/media/glass-ribbon.webp" width={970} height={1946} sizes="(max-width: 860px) 74vw, 740px" priority />
       </div>
       <div className="ribbon r-left" aria-hidden="true">
-        <LiquidGlass src="/media/glass-sweep.webp" width={1300} height={970} sizes="(max-width: 860px) 96vw, 720px" seed={3.7} />
+        <LiquidGlass src="/media/glass-sweep.webp" width={1300} height={970} sizes="(max-width: 860px) 112vw, 900px" seed={3.7} />
       </div>
       <div className="wrap">
         <h1 id="hero-h"><span className="ln">{hero.lines[0]}</span> <span className="ln dim">{hero.lines[1]}</span></h1>
