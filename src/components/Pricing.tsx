@@ -57,8 +57,6 @@ export function Pricing() {
           </div>
 
           <div className="pr-get">
-            <p className="pr-label">What that makes</p>
-            <h3>Spend it on any mix <small>These are examples. Use your credits on whatever you need, in any order.</small></h3>
             <ul className="pr-list">
               {creditCosts.map((c) => (
                 <li key={c.what}>
