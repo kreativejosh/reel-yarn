@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { hero, nav, site } from "@/content/site";
+import { HeroStage } from "./HeroStage";
+import { Roll } from "./Roll";
 
 export function Nav() {
   return (
-    <header id="top" className="band" style={{ position: "relative", zIndex: 5, background: "#fff" }}>
+    <header id="top" className="band">
       <div className="wrap">
         <nav className="top" aria-label="Main">
           <a href="#top" className="logo" aria-label={`${site.name} home`}><i></i>{site.name}</a>
@@ -11,8 +13,8 @@ export function Nav() {
             {nav.map((l) => <a key={l.href} href={l.href}>{l.label}</a>)}
           </div>
           <div className="navr">
-            <a href={site.links.signIn} className="btn ghost">Sign in</a>
-            <a href={site.links.signUp} className="btn btn-black">Start free</a>
+            <a href={site.links.signIn} className="btn ghost"><Roll>Sign in</Roll></a>
+            <a href={site.links.signUp} className="btn btn-black"><Roll>Start free</Roll></a>
           </div>
         </nav>
       </div>
@@ -37,14 +39,14 @@ function dissolveSquares() {
 
 export function Hero() {
   return (
-    <section className="hero band" aria-labelledby="hero-h">
+    <HeroStage>
       <Image className="ribbon" src="/media/glass-ribbon.webp" alt="" aria-hidden="true" width={970} height={1946} priority sizes="(max-width: 860px) 46vw, 430px" />
       <div className="wrap">
         <h1 id="hero-h"><span className="ln">{hero.lines[0]}</span> <span className="ln dim">{hero.lines[1]}</span></h1>
         <p className="sub">{hero.sub}</p>
         <div className="ctas">
-          <a href={site.links.signUp} className="btn btn-orange">Make your first video free</a>
-          <a href="#gallery" className="btn btn-outline">See what it makes</a>
+          <a href={site.links.signUp} className="btn btn-orange"><Roll>Make your first video free</Roll></a>
+          <a href="#gallery" className="btn btn-outline"><Roll>See what it makes</Roll></a>
         </div>
         <p className="fine">{hero.fine}</p>
 
@@ -63,7 +65,7 @@ export function Hero() {
                 {dissolveSquares().map((s, i) => <span key={i} style={s} />)}
               </div>
             </div>
-            <div className="timeline" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <div className="timeline" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><i className="playhead"></i></div>
           </div>
           <aside className="side">
             <div className="row"><span className="pill">🎙 Voice</span><span className="pill">🌍 Pidgin</span><span className="share">Download</span></div>
@@ -78,6 +80,6 @@ export function Hero() {
           </aside>
         </div>
       </div>
-    </section>
+    </HeroStage>
   );
 }

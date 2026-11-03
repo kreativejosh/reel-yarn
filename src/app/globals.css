@@ -403,3 +403,42 @@ details .ans{padding:0 30px 26px 82px;color:var(--ink-2);font-size:1.06rem;max-w
 @media (max-width:860px){.foot{padding-top:56px}.fgrid{grid-template-columns:1fr}.fgrid>div{min-height:0;padding:44px 24px}.fgrid>div+div{border-left:0;border-top:1px solid var(--fl)}.fgrid.fnav>div{padding:40px 24px}.fnav ul{margin-top:24px}.fgrid i{display:none}.flinks,.fsub{margin-top:36px}.fnote{margin-top:48px}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .feat-panel[hidden]{display:none}
+
+/* ---------- motion ---------- */
+:root{--ease-out:cubic-bezier(.16,1,.3,1);--ease-in-out:cubic-bezier(.65,0,.35,1)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+
+/* Nav sticks, hides while scrolling down, frosts once the page moves. */
+#top{position:sticky;top:0;z-index:20;background:#fff;transition:transform .45s var(--ease-out),background-color .3s,box-shadow .3s}
+#top.nav-solid{background:rgba(255,255,255,.84);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px)}
+#top.nav-solid nav.top{border-bottom-color:transparent}
+#top.nav-solid{box-shadow:0 1px 0 var(--line)}
+#top.nav-hidden{transform:translateY(-100%)}
+.links a{position:relative;transition:color .2s}
+.links a:hover,.links a.on{color:var(--ink)}
+.links a::after{content:"";position:absolute;left:50%;bottom:-9px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--orange);scale:0;transition:scale .3s var(--ease-out)}
+.links a.on::after{scale:1}
+
+/* Buttons: label rolls to a second copy, arrow nudges, press gives. */
+.btn{transition:scale .14s var(--ease-out),background-color .2s,border-color .2s}
+.btn:active{scale:.97}
+.roll{display:inline-block;overflow:clip;line-height:1.3;height:1.3em;vertical-align:top}
+.roll>span{display:block;position:relative}
+.roll>span::after{content:attr(data-l);position:absolute;left:0;top:100%;white-space:nowrap}
+.btn .arw{display:inline-block}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .roll>span,.btn .arw{transition:transform .38s var(--ease-out)}
+  .btn:hover .roll>span{transform:translateY(-100%)}
+  .btn:hover .arw{transform:translateX(4px)}
+  .btn-outline:hover{border-color:var(--ink)}
+}
+
+/* The hero is hidden until its entrance starts by a style tag the gate in layout.tsx injects. */
+.timeline{position:relative;overflow:hidden}
+.playhead{position:absolute;inset:0;pointer-events:none}
+.playhead::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:2px;border-radius:2px;background:var(--orange);box-shadow:0 0 12px 1px rgba(255,90,31,.7)}
+.agent-msg.typing::after{content:"";display:inline-block;width:2px;height:1.05em;margin-left:2px;vertical-align:-.15em;background:var(--orange);animation:caret .8s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+.steps-a div{transition:color .3s}
+.steps-a i{transition:background-color .25s,border-color .25s,box-shadow .25s}

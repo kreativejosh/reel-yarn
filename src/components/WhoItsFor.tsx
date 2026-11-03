@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { icps, site, type Icp } from "@/content/site";
+import { Roll } from "./Roll";
 
 function Card({ c, copy }: { c: Icp; copy: boolean }) {
   return (
@@ -65,7 +66,7 @@ export function WhoItsFor() {
         <h2 id="who-h">Built for people who grow with content</h2>
         <div>
           <p>ReelYarn isn&apos;t for making one video. It&apos;s for people who post every week to win customers, students and income. Find yourself below.</p>
-          <a href={site.links.signUp} className="btn">Start free &rarr;</a>
+          <a href={site.links.signUp} className="btn"><Roll>Start free</Roll><span className="arw" aria-hidden="true">&rarr;</span></a>
         </div>
       </div></div>
       <div className="icp-car">

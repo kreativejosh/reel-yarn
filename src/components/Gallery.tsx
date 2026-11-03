@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { sampleVideos, site, type SampleVideo } from "@/content/site";
+import { Roll } from "./Roll";
 
 export function Gallery() {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -26,7 +27,7 @@ export function Gallery() {
               <h2 id="gallery-h">If you can say it, you can post it</h2>
               <p>Every video below was made with ReelYarn from one line. Press play to watch, then type your own.</p>
             </div>
-            <a href={site.links.signUp} className="btn btn-black">Create videos now</a>
+            <a href={site.links.signUp} className="btn btn-black"><Roll>Create videos now</Roll></a>
           </div>
 
           <div className="vgrid">

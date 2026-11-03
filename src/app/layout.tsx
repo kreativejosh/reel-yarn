@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/content/site";
 import { JsonLd, organizationLd, websiteLd } from "@/components/JsonLd";
+import { MotionProvider } from "@/components/MotionProvider";
 import "./globals.css";
 
 const instrument = Instrument_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-instrument", display: "swap" });
@@ -48,10 +49,17 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
+const motionGate = `if(matchMedia("(prefers-reduced-motion: no-preference)").matches){var s=document.createElement("style");s.id="ry-gate";s.textContent=".hero :is(h1,.sub,.ctas>*,.fine,.app,.ribbon){visibility:hidden}";document.head.appendChild(s);setTimeout(function(){if(!window.__ryMotion)s.remove()},2500)}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${instrument.variable} ${geist.variable} ${geistMono.variable}`}>
+      <head>
+        {/* Hide the hero until its entrance runs. Skipped for reduced motion; undone if scripts never start. */}
+        <script dangerouslySetInnerHTML={{ __html: motionGate }} />
+      </head>
       <body>
+        <MotionProvider />
         <JsonLd data={[organizationLd(), websiteLd()]} />
         {children}
       </body>

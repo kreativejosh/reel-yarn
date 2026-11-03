@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Roll } from "./Roll";
 import { creditCosts, DEFAULT_PACK, NGN_PER_USD, packs, pricing, site } from "@/content/site";
 
 const icons: Record<(typeof creditCosts)[number]["icon"], React.ReactNode> = {
@@ -47,7 +48,7 @@ export function Pricing() {
                 {packs.map(([c], k) => <span key={c} className={k === i ? "on" : undefined}>{c >= 1000 ? `${c / 1000}k` : c}</span>)}
               </div>
             </div>
-            <a href={site.links.signUp} className="btn btn-orange pr-buy"><b>Get {fmt(credits)} credits</b><span aria-hidden="true">&rarr;</span></a>
+            <a href={site.links.signUp} className="btn btn-orange pr-buy"><b><Roll>{`Get ${fmt(credits)} credits`}</Roll></b><span className="arw" aria-hidden="true">&rarr;</span></a>
             <a href={site.links.signUp} className="pr-custom">Need a different amount? Pay any sum from $5 at the bigger-pack rate.</a>
           </div>
 
