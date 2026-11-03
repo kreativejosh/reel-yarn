@@ -27,7 +27,8 @@ export function WhoItsFor() {
     const step = () => cards[1].offsetLeft - cards[0].offsetLeft;
     const edge = () => parseFloat(getComputedStyle(it).paddingLeft);
     const fade = () => {
-      const r = it.getBoundingClientRect(), e = edge();
+      // Rects are in zoomed pixels, padding is not (desktop uses CSS zoom), so scale the edge.
+      const r = it.getBoundingClientRect(), e = edge() * (r.width / it.offsetWidth || 1);
       cards.forEach((c) => {
         const b = c.getBoundingClientRect();
         c.classList.toggle("out", b.left < r.left + e - 4 || b.right > r.right - e + 4);

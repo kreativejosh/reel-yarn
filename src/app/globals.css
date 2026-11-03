@@ -8,6 +8,8 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+/* Desktop renders at 80% so the side margins are about twice as wide (matches the approved HTML look). */
+@media (min-width:1100px){html{zoom:.8}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:8px;background:var(--paper);color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
 .band{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
